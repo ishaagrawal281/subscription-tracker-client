@@ -1,38 +1,253 @@
-.App {
-  text-align: center;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
+  color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* Auth */
+.auth-container {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 1rem;
+}
+.auth-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.auth-box h2 { margin-bottom: 1.5rem; text-align: center; }
+.auth-box input {
+  width: 100%; padding: 0.75rem 1rem;
+  margin-bottom: 1rem; border: 1px solid #ddd;
+  border-radius: 8px; font-size: 1rem;
+}
+.auth-box button {
+  width: 100%; padding: 0.75rem;
+  background: #667eea; color: white;
+  border: none; border-radius: 8px;
+  font-size: 1rem; cursor: pointer;
+}
+.auth-box button:hover { background: #5a6fd6; }
+.auth-box p { text-align: center; margin-top: 1rem; }
+.auth-box a { color: #667eea; text-decoration: none; }
+.error { color: red; margin-bottom: 1rem; font-size: 0.9rem; }
+
+/* Dashboard */
+.dashboard { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+
+.header {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-bottom: 1.5rem;
+  flex-wrap: wrap; gap: 0.5rem;
+}
+.header h1 { font-size: 1.5rem; }
+.header-right { display: flex; gap: 1rem; align-items: center; }
+.logout-btn {
+  background: #e74c3c; color: white;
+  border: none; padding: 0.4rem 1rem;
+  border-radius: 6px; cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; margin-bottom: 1.5rem;
+}
+.stat-card {
+  background: white; padding: 1.2rem;
+  border-radius: 10px; text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.stat-card p { color: #888; font-size: 0.85rem; }
+.stat-card h3 { font-size: 1.8rem; color: #667eea; margin-top: 0.3rem; }
+
+/* Upcoming */
+.upcoming {
+  background: #fff8e1; border-left: 4px solid #f39c12;
+  padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;
+}
+.upcoming h3 { margin-bottom: 0.5rem; color: #e67e22; }
+.upcoming p { font-size: 0.9rem; margin: 0.3rem 0; }
+
+/* Add Button */
+.add-btn {
+  background: #667eea; color: white;
+  border: none; padding: 0.7rem 1.5rem;
+  border-radius: 8px; cursor: pointer;
+  font-size: 1rem; margin-bottom: 1rem;
+  width: 100%;
+}
+.add-btn:hover { background: #5a6fd6; }
+
+/* Form */
+.sub-form {
+  background: white; padding: 1.5rem;
+  border-radius: 10px; margin-bottom: 1.5rem;
+  display: grid; gap: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.sub-form input,
+.sub-form select {
+  padding: 0.7rem 1rem; border: 1px solid #ddd;
+  border-radius: 8px; font-size: 0.95rem; width: 100%;
+}
+.form-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.form-buttons button {
+  flex: 1; padding: 0.7rem;
+  border: none; border-radius: 8px;
+  cursor: pointer; font-size: 0.95rem;
+  min-width: 120px;
+}
+.form-buttons button[type="submit"] { background: #667eea; color: white; }
+.cancel-btn { background: #eee !important; color: #333 !important; }
+
+/* Subscription Cards */
+.sub-list { display: grid; gap: 1rem; }
+.sub-card {
+  background: white; padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 0.75rem;
+}
+.sub-info { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.sub-info h3 { font-size: 1rem; }
+.badge {
+  font-size: 0.75rem; padding: 0.2rem 0.6rem;
+  border-radius: 20px; background: #eee;
+}
+.badge.green { background: #d4edda; color: #155724; }
+.badge.red { background: #f8d7da; color: #721c24; }
+.sub-meta p { font-size: 0.85rem; color: #666; }
+.sub-actions { display: flex; gap: 0.5rem; }
+.edit-btn {
+  background: #f0f0f0; border: none;
+  padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer;
+}
+.delete-btn {
+  background: #ffe0e0; color: #c0392b;
+  border: none; padding: 0.4rem 0.8rem;
+  border-radius: 6px; cursor: pointer;
+}
+.empty { text-align: center; color: #aaa; padding: 2rem; }
+
+/* =============================
+   MOBILE RESPONSIVE
+   ============================= */
+@media (max-width: 600px) {
+
+  .dashboard { padding: 1rem; }
+
+  .header h1 { font-size: 1.2rem; }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stat-card h3 { font-size: 1.4rem; }
+
+  .sub-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sub-actions {
+    width: 100%;
+  }
+
+  .edit-btn, .delete-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.6rem;
+  }
+
+  .header-right span {
+    display: none;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 400px) {
+  .stats {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+/* =============================
+   DARK MODE
+   ============================= */
+
+body.dark {
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+body.dark .stat-card,
+body.dark .sub-card,
+body.dark .sub-form {
+  background: #16213e;
+  color: #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+body.dark .sub-form input,
+body.dark .sub-form select {
+  background: #0f3460;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+body.dark .stat-card p { color: #aaa; }
+
+body.dark .sub-meta p { color: #aaa; }
+
+body.dark .badge { background: #0f3460; color: #ccc; }
+
+body.dark .edit-btn {
+  background: #0f3460;
+  color: #e0e0e0;
+}
+
+body.dark .upcoming {
+  background: #2d2000;
+  border-color: #f39c12;
+}
+
+body.dark .cancel-btn {
+  background: #0f3460 !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark .auth-box {
+  background: #16213e;
+  color: #e0e0e0;
+}
+
+body.dark .auth-box input {
+  background: #0f3460;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+/* Dark toggle button */
+.dark-toggle {
+  background: transparent;
+  border: 1px solid #667eea;
+  color: #667eea;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+body.dark .dark-toggle {
+  border-color: #e0e0e0;
+  color: #e0e0e0;
 }
